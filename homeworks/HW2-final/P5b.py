@@ -1,5 +1,6 @@
-print("The following code does not work because the balance was only assigned " \
-      "once in the decorator function, it did not get updated after the withdraw. ")
+print("The following code does not work because the balance cannot be updated " \
+      "directly in the inner function. The inner function would have a balance variable in " \
+      "a new scope that is different than the balance as the parameter.")
 
 def make_withdrawal(balance):
     def inner(withdraw):

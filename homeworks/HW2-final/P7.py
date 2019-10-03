@@ -46,7 +46,7 @@ def test(f,*args):
         f(*args)
         print("Didn't catch an error, the result is positive")
     except ValueError:
-        print("Caught ValueError, the result is nonpositive") 
+        print("Caught ValueError, the result is non-positive") 
 
 print("Below are the tests result when functions return positive value\n")
 test(dec_f1,a,b,c)

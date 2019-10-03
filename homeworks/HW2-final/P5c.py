@@ -1,5 +1,3 @@
-print("The following code does not work because the balance was only assigned " \
-      "once in the decorator function, it did not get updated after the withdraw. ")
 
 def make_withdrawal(balance):
     def inner(withdraw):
@@ -8,6 +6,8 @@ def make_withdrawal(balance):
             raise ValueError("Balance less than withdraw amount.")
         else:
             balance = balance - withdraw
+            print("Withdraw", withdraw,"from account.")
+            print("Balance now is", balance)
             return balance
     return inner
 
