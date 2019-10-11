@@ -8,18 +8,13 @@ class Regression():
         self.params = dict()
     
     def get_params(self):
-        '''
-        for key in self.params.keys():
-            print(type(key))
-            print("The", key,"is",self.params[key])
-        '''
         return self.params
     
     def set_params(self, **kwargs):
-        return None
+        raise NotImplementedError("set_params not implemented yet")
         
     def fit(self, X, y):
-        return None
+        raise NotImplementedError("fit function not implemented yet");
         
     def predict(self, X):
         #beta = np.array(self.params['coefficients']).transpose()

@@ -104,76 +104,69 @@ class BankUser:
 #ATMSession(bankUser)
 def ATMSession(bankUser):
     def Interface():
-        txt = input("Enter Option:\n" + "1)Exit\n"+ "2)Create Account\n"+ "3)Check Balance\n"+ "4)Deposit\n"+ "5)Withdraw\n")
-        print("Is this what you just said? ", txt)
-        if txt == "1":
-            #exit()
-            pass
-        return 0
+        loop = True
+        while loop:
+            txt = input("Enter Option:\n" + "1)Exit\n"+ "2)Create Account\n"+ "3)Check Balance\n"+ "4)Deposit\n"+ "5)Withdraw\n")
+            
+            if txt == "1":
+                break
+            elif (txt == "4" or txt == "5"):
+                #get account type
+                txt_type = input("Enter Option:\n" + "1)Checking\n"+ "2)Savings\n")
+                acc_type = AccountType(int(txt_type))
+                
+                #get amount input
+                txt_amount = input("Enter Integer Amount, Cannot Be Negative:\n")
+                # make amount is integer
+                try:
+                    amount = int(txt_amount)
+                except ValueError:
+                    print("Please enter an integer amount")
+                # make sure amount is positive integer
+                if amount < 0:
+                    #raise ValueError("Amount cannot be negative")
+                    print("Amount cannot be negative")
+                    pass
+                else:
+                    if txt == "4":
+                        #print("In interface deposit")
+                        try:
+                            bankUser.deposit(acc_type,amount)
+                            print("Deposit successful")
+                        except Exception as e:
+                            print(e)
+                    else:
+                        try:
+                            bankUser.withdraw(acc_type,amount)
+                            print("Withdraw successful")
+                        except Exception as e:
+                            print(e)    
+                        
+            elif (txt == "2"):
+                #create account
+                #ask for account type
+                txt_new = input("Enter Option:\n" + "1)Savings\n"+ "2)Checking\n")
+                print("Is this what you input",txt_new)
+                acc_type = AccountType(int(txt_new))
+                try:
+                    bankUser.addAccount(acc_type)
+                    print("Account created successful.")
+                except Exception as e:
+                    print(e)
+                    
+            elif (txt == "3"):
+                # Check balance
+                #ask for account type
+                txt_new = input("Enter Option:\n" + "1)Savings\n"+ "2)Checking\n")
+                acc_type = AccountType(int(txt_new))
+                balance = bankUser.getBalance(acc_type)
+                print("Your account balance is", balance)
+            else:
+                print("Invalid input. Please try again.")
+            # end while
+        return None
     return Interface
 
-def Interface(bankUser):
-    loop = True
-    while loop:
-        txt = input("Enter Option:\n" + "1)Exit\n"+ "2)Create Account\n"+ "3)Check Balance\n"+ "4)Deposit\n"+ "5)Withdraw\n")
-        
-        if txt == "1":
-            break
-        elif (txt == "4" or txt == "5"):
-            #get account type
-            txt_type = input("Enter Option:\n" + "1)Checking\n"+ "2)Savings\n")
-            acc_type = AccountType(int(txt_type))
-            
-            #get amount input
-            txt_amount = input("Enter Integer Amount, Cannot Be Negative:\n")
-            # make amount is integer
-            try:
-                amount = int(txt_amount)
-            except ValueError:
-                print("Please enter an integer amount")
-            # make sure amount is positive integer
-            if amount < 0:
-                #raise ValueError("Amount cannot be negative")
-                print("Amount cannot be negative")
-                pass
-            else:
-                if txt == "4":
-                    #print("In interface deposit")
-                    try:
-                        bankUser.deposit(acc_type,amount)
-                        print("Deposit successful")
-                    except Exception as e:
-                        print(e)
-                else:
-                    try:
-                        bankUser.withdraw(acc_type,amount)
-                        print("Withdraw successful")
-                    except Exception as e:
-                        print(e)    
-                    
-        elif (txt == "2"):
-            #create account
-            #ask for account type
-            txt_new = input("Enter Option:\n" + "1)Savings\n"+ "2)Checking\n")
-            print("Is this what you input",txt_new)
-            acc_type = AccountType(int(txt_new))
-            try:
-                bankUser.addAccount(acc_type)
-                print("Account created successful.")
-            except Exception as e:
-                print(e)
-                
-        elif (txt == "3"):
-            # Check balance
-            #ask for account type
-            txt_new = input("Enter Option:\n" + "1)Savings\n"+ "2)Checking\n")
-            acc_type = AccountType(int(txt_new))
-            balance = bankUser.getBalance(acc_type)
-            print("Your account balance is", balance)
-        else:
-            print("Invalid input. Please try again.")
-        # end while
-    return None
 
 
 #bankUser = BankUser("Emma")
