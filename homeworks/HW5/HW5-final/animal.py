@@ -25,18 +25,13 @@ class Animal:
     
     # getter
     def species(self):
-        print("Getting species")
+        #print("Getting species")
         return self._species
     
     # setter
     def set_species(self, into):
-        print("Setting species to", into)
+        #print("Setting species to", into)
         assert into in Animal.valid_species, Exception(f'invalid species: {into}')
         self._species = into
         
     species = property(species, set_species)
-    
-    def new_set_species(self, into):
-        print("Setting species to", into)
-        assert into in Animal.valid_species, Exception(f'invalid species: {into}')
-        self.species = into
